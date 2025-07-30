@@ -3,7 +3,7 @@ import Header from "../component/Header";
 
 const Setting = () => {
   return (
-    <Box bgcolor="black"  p={0}>
+    <Box bgcolor="black"  p={0} height={'100vh'}>
       <Header title={'Settings'} />
       <Box ml={3} mr={2} pb={3} pt={1}>
         
