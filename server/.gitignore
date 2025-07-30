@@ -1,0 +1,3 @@
+.env
+admin_secret.json
+node_modules/
