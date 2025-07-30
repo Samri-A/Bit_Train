@@ -6,6 +6,7 @@ import Register from "./component/Register";
 import Home from "./component/Home";
 import Test from './component/test';
 import Setting from "./pages/Setting";
+import NearbyGyms from './pages/Nearby_Gym';
 import AccountabilityPartner from './pages/Partner';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 function App() {
@@ -23,6 +24,7 @@ function App() {
              <Route path="/test" element={<Test/>} ></Route>
              <Route path="/setting" element={<Setting/>}></Route>
              <Route path="/partner" element={<AccountabilityPartner/>}></Route>
+             <Route path="/gyms" element={<NearbyGyms/>}></Route>
           </Routes>
          </Router>
 

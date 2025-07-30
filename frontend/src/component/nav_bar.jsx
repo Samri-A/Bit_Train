@@ -13,7 +13,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 const navItems = [
   { text: 'home', icon: <DashboardIcon />, path: '/home' },
   { text: 'Workouts', icon: <FitnessCenterIcon />, path: '/workouts' },
-  { text: 'Habits', icon: <CheckCircleIcon />, path: '/habits' },
   { text: 'Progress', icon: <MonitorWeightIcon />, path: '/progress' },
   { text: 'Coach', icon: <SmartToyIcon />, path: '/coach' },
   { text: 'Partner', icon: <GroupIcon />, path: '/partner' },
