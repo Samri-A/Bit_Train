@@ -77,7 +77,7 @@ const Home = ()=>{
                 sx={{
                       position: 'relative',
                       top: '3px', 
-                      left: '86px', 
+                      right: '6px', 
                       width: '72px', 
                       height: '72px', 
                       fill: '#FFFFFFFF', 

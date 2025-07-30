@@ -20,18 +20,18 @@ const AccountabilityPartner = () => {
       name: 'Tola',
       status: '4 days in a row',
       icon: <WhatshotIcon sx={{ color: 'orange' }} />,
-      avatarColor: '#C4744F',
+      avatarColor: '#EA916EFF',
     },
     {
       name: 'Abechci',
       status: 'Missed  gym day',
       icon: null,
-      avatarColor: '#C4744F',
+      avatarColor: '#EA916EFF',
     },
   ];
 
   return (
-    <Box sx={{ bgcolor: '#121418', minHeight: '100vh', p: 2, pb: 8 }}>
+    <Box sx={{ bgcolor: '#000000', minHeight: '100vh', p: 2, pb: 8 }}>
        <Header title={'Partner'}/>
      
 
