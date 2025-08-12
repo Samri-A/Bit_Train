@@ -8,6 +8,7 @@ import Test from './component/test';
 import Setting from "./pages/Setting";
 import NearbyGyms from './pages/Nearby_Gym';
 import AccountabilityPartner from './pages/Partner';
+import WorkoutPage from "./pages/workouts";
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 function App() {
   const theme = useTheme()
@@ -25,6 +26,7 @@ function App() {
              <Route path="/setting" element={<Setting/>}></Route>
              <Route path="/partner" element={<AccountabilityPartner/>}></Route>
              <Route path="/gyms" element={<NearbyGyms/>}></Route>
+             <Route path = "/workouts" element={<WorkoutPage/>}></Route>
           </Routes>
          </Router>
 
