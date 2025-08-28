@@ -31,7 +31,10 @@ const Header = ({title})=>{
             
              </Box>
           </Box>
+          <Box bgcolor={"black"}>
+            
           {showNav && <NavBox/>} 
+          </Box>
           </Box>
     );
 
