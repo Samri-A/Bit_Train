@@ -1,106 +1,107 @@
-import { fetchData} from '../utils/ExerciseApi';
-import { useState } from 'react';
-import {
-  Box,
-  Card,
-  CardContent,
-  Typography,
-  TextField,
-  IconButton, 
-  Button,
-  CardMedia
-} from "@mui/material";
-import { Save, Search } from "@mui/icons-material";
-import Header from "../component/Header";
+import React, { useEffect, useRef } from "react";
 
-const Test = ()=>{
-  const [search , setSearch] = useState('');
-  const [results, setResults] = useState([]);
-  const [saved, setSaved] = useState([]);
-  const handleSearch= async ()=>{
-    const exercisesData = await fetchData(`https://exercisedb-api.vercel.app/api/v1/exercises/filter` , search);
-    console.log(exercisesData);
-   
-     setResults(exercisesData["data"])
-  }
-  const handleSave = (exercise) => {
-    if (!saved.find((item) => item.id === exercise.id)) {
-      setSaved((prev) => [...prev, exercise]);
+// Import OpenCV.js (installed via npm: `npm install opencv.js`)
+// import cv from "opencv.js";
+
+export default function Test() {
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    async function initCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+      } catch (err) {
+        console.error("Error accessing webcam: ", err);
+      }
     }
-  };
-  
-  return (
-      <Box sx={{ background: "#14161a", minHeight: "100vh", p: 2 }}>
-        <Header text={"Workout Exercises"} />
-  
-        <Box sx={{ display: "flex", gap: 2, mb: 3 }}>
-          <TextField
-            label="Search workout with "
-            variant="outlined"
-            size="small"
-            fullWidth
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            sx={{ backgroundColor: "white", borderRadius: 1 }}
-          />
-          <IconButton
-            onClick={handleSearch}
-            sx={{ backgroundColor: "#1976d2", color: "white" }}
-          >
-            <Search />
-          </IconButton>
-        </Box>
-  
-        {results.map((exercise) => (
-          <Card key={exercise.id} sx={{ mb: 2, borderRadius: 2 }}>
-            <CardContent>
-              <CardMedia
-               component="img"
-               image={exercise.gifUrl}
-               alt={exercise.name}
-               sx={{ borderRadius: 2, mb: 2 }}
-             />
-              <Typography fontWeight={600}>{exercise.name}</Typography>
-              <Typography variant="body2">Body Part: {exercise.bodyParts}</Typography>
-              <Typography variant="body2">Target: {exercise.targetMuscles}</Typography>
-              <Button
-                variant="text"
-                size="small"
-                endIcon={<Save />}
-                onClick={() => handleSave(exercise)}
-                sx={{ mt: 1 }}
-              >
-                Save
-              </Button>
-            </CardContent>
-                      </Card>
-        ))}
-  
-        {saved.length > 0 && (
-          <Box mt={4}>
-            <Typography variant="h6" color="white" mb={2}>
-              My Saved Workouts
-            </Typography>
-            {saved.map((exercise) => (
-              <Card key={exercise.id} sx={{ mb: 2, borderRadius: 2 }}>
-                <CardContent>
-                  <CardMedia
-                    component="img"
-                    image={exercise.gifUrl}
-                    alt={exercise.name}
-                    sx={{ borderRadius: 2, mb: 2 }}
-                  />
-                  <Typography fontWeight={600}>{exercise.name}</Typography>
-                  <Typography variant="body2">Body Part: {exercise.bodyParts}</Typography>
-                  <Typography variant="body2">Target: {exercise.targetMuscles}</Typography>
-                </CardContent>
-              </Card>
-            ))}
-          </Box>
-        )}
-      </Box>
-    );
+    initCamera();
+  }, []);
 
+  return (
+    <div className="flex flex-col items-center">
+      <video
+        ref={videoRef}
+        autoPlay
+        playsInline
+        width="640"
+        height="480"
+        className="rounded-lg shadow-lg"
+      />
+      <canvas ref={canvasRef} width="640" height="480" className="hidden"></canvas>
+    </div>
+  );
 }
 
-export default Test;
+// const Test = () => {
+//   const videoRef = useRef(null);
+//   const canvasRef = useRef(null);
+
+//   useEffect(() => {
+//     // Start webcam stream
+//     const startCamera = async () => {
+//       try {
+//         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+//         if (videoRef.current) {
+//           videoRef.current.srcObject = stream;
+//           videoRef.current.play();
+//         }
+//       } catch (err) {
+//         console.error("Error accessing webcam: ", err);
+//       }
+//     };
+
+//     startCamera();
+
+//     // Process frames with OpenCV
+//     const processVideo = () => {
+//       if (!videoRef.current || !canvasRef.current) return;
+
+//       const video = videoRef.current;
+//       const canvas = canvasRef.current;
+//       const ctx = canvas.getContext("2d");
+
+//       const cap = new cv.VideoCapture(video);
+
+//       const src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
+//       const gray = new cv.Mat(video.height, video.width, cv.CV_8UC1);
+
+//       const FPS = 30;
+
+//       const loop = () => {
+//         cap.read(src);
+//         cv.cvtColor(src, gray, cv.COLOR_RGBA2GRAY);
+
+//         // Show grayscale result
+//         cv.imshow(canvas, gray);
+
+//         setTimeout(loop, 1000 / FPS);
+//       };
+
+//       loop();
+//     };
+
+//     videoRef.current?.addEventListener("play", processVideo);
+
+//     return () => {
+//       videoRef.current?.removeEventListener("play", processVideo);
+//     };
+//   }, []);
+
+//   return (
+//     <div className="flex flex-col items-center">
+//       <video
+//         ref={videoRef}
+//         width="640"
+//         height="480"
+//         style={{ display: "none" }}
+//       />
+//       <canvas ref={canvasRef} width="640" height="480" />
+//     </div>
+//   );
+// };
+
+// export default Test;
