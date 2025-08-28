@@ -24,8 +24,8 @@ export default function NavBox() {
   const location = useLocation();
 
   return (
-    <Drawer variant="permanent" sx={{ width: 240, '& .MuiDrawer-paper': { width: 240 } }}>
-      <List>
+    <Drawer variant="permanent" sx={{ backgroundColor: '#333', width: 240, '& .MuiDrawer-paper': { width: 240 } }} >
+      <List >
         {navItems.map(({ text, icon, path }) => (
           <ListItem
             button
@@ -33,9 +33,20 @@ export default function NavBox() {
             component={Link}
             to={path}
             selected={location.pathname === path}
+            sx={{
+              backgroundColor: '#333',
+              '&.Mui-selected': {
+                backgroundColor: '#502b38ff', 
+              },
+              '&:hover': {
+                backgroundColor: '#222',
+              },
+            }}
           >
-            <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemIcon color='red'>{icon}</ListItemIcon>
+            <ListItemText primary={text} sx={{
+              color : 'white'
+            }}/>
           </ListItem>
         ))}
       </List>
