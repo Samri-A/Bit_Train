@@ -1,4 +1,4 @@
-import { fetchData} from '../utils/ExerciseApi';
+import { fetchData} from '../services/ExerciseApi';
 import { useState } from 'react';
 import {
   Box,
