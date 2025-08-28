@@ -20,7 +20,14 @@ class WORKOUTS(models.Model):
 class SETTING(models.Model):
      USER_ID = models.ForeignKey(USER  , on_delete=models.CASCADE)
      is_darkmode = models.BooleanField(default=True , null=False)
+     GYM_LOCATION = models.TextField(null=True)
 
 
 class TRACK(models.Model):
     USER_ID = models.ForeignKey( USER, on_delete=models.CASCADE)
+
+class Reminders(models.Model):
+    USER_ID = models.ForeignKey( USER, on_delete=models.CASCADE)
+    Message = models.TextField(default="Today's gym day")
+    Days = models.TextField(null=True)
+    Enabled = models.BooleanField(default=False)

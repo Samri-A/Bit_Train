@@ -1,4 +1,3 @@
-from firebase_admin import db
 from django.http import JsonResponse
 from .serializer import Userserializer
 from django.utils.decorators import method_decorator
@@ -17,18 +16,3 @@ class gymCheck(APIView):
                 "message": "Welcome to our API service."}
                 , status= status.HTTP_200_OK
         )
-
-'''def update_user_status(request):
-    user_id = request.user.id
-    status = request.POST.get('status')
-
-    user_ref = db.reference(f'/users/{user_id}/status')
-
-    
-    user_ref.set(status)
-
-    
-    current_status = user_ref.get()
-
-    return JsonResponse({'message': 'Status updated!', 'new_status': current_status})
-'''

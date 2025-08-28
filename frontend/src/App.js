@@ -9,6 +9,7 @@ import Setting from "./pages/Setting";
 import NearbyGyms from './pages/Nearby_Gym';
 import AccountabilityPartner from './pages/Partner';
 import WorkoutPage from "./pages/workouts";
+import getlocation from "./pages/Nearby_Gym"
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 function App() {
   const theme = useTheme()
