@@ -44,7 +44,8 @@ const LaunchScreen = () => {
             src={logo}
             alt="Logo"
             sx={{
-              height: '70px',
+              height: '80px',
+              width: '80px',
               borderRadius: '50%',
               position: 'relative',
               marginLeft: '30px',
